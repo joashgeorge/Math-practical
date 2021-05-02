@@ -1,0 +1,33 @@
+#experiment1
+#mathpracticalSTP4
+
+from sympy import symbols,factorial,limit
+from math import inf
+n=symbols('n')
+def u(n):
+    return (n**2*(n+1)**2)/factorial(n)#change here
+def check_convergence(u):
+    u1=u(n).subs(n,n+1)
+    DL=limit(u1/u(n),n,inf)
+    RL=limit(n*(u(n)/u1-1),n,inf)
+    CL=limit(u(n)**(1/n),n,inf)
+    if DL<1:
+        print("The given series converges by Ratio test with limit, ",DL)
+    elif DL>1:
+        print("The given series diverges by Ratio test with limit, ",DL)
+    else:
+        print("The ratio test fails.")
+        if RL>1:
+            print("The given series converges by Raabe's test with limit, ",RL)
+        elif RL<1:
+            print ("The given series diverges by Raabe's test with limit, ",RL)
+        else:
+            print("Raabe's test fails.")
+            if CL<1:
+                print("The given series converges by Cauchy's test with limit, ",CL)
+            elif CL>1:
+                print("The given series diverges by Cauchy's test with limit, ",CL)
+            else:
+                print("Further testing required")
+
+check_convergence(u)
