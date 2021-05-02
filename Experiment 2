@@ -1,0 +1,7 @@
+from sympy import factorial
+from math import inf
+from mpmath import nsum                                        
+def u(n):
+    return ((3*n**3-n+1)/factorial(n))*(2**n)
+sum=nsum(u,[1,inf])
+print("The sum of the given series, ",sum)
